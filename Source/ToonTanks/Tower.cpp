@@ -5,6 +5,7 @@
 #include "Tank.h"
 #include <Kismet/GameplayStatics.h>
 #include "TimerManager.h"
+#include "BasePowerUp.h"
 
 void ATower::BeginPlay() {
 	Super::BeginPlay();
@@ -31,7 +32,30 @@ bool ATower::CheckFireRange() {
 	}
 	return false;
 }
+
+void ATower::SpawnPowerUps()
+{
+	FVector Location = GetActorLocation();
+	float i = 0.5;
+	float yValue = 0;
+
+	FVector Offset;
+	for (auto Item : DroppedPowerUps)
+	{
+		//Offset = FVector(-GetActorLocation().ForwardVector + i * 100,0, 0);
+		if (i >= 1)
+			yValue = rand() % 500;
+
+		Offset = Location.ForwardVector + FVector(-(i * 100),yValue, 0);
+		UE_LOG(LogTemp,Display,TEXT("ActorLocation: %s | Huy %s"), *GetActorLocation().ToCompactString(), *(GetActorLocation() + Offset).ToCompactString())
+		ABasePowerUp* PowerUp = GetWorld()->SpawnActor<ABasePowerUp>(Item, GetActorLocation() + Offset, GetActorRotation());
+		
+		i++;
+	}
+}
+
 void ATower::HandleDestructions() {
 	Super::HandleDestructions();
 	Destroy();
+	SpawnPowerUps();
 }

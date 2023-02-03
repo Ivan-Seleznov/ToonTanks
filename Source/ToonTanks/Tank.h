@@ -23,6 +23,9 @@ public:
 
 
 	bool bAlive = true;
+
+	void SetSpeed(float sp) { Speed = sp; }
+	float GetSpeed() { return Speed; }
 protected:
 	virtual void BeginPlay() override;
 private:

@@ -23,7 +23,14 @@ protected:
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-	
+	void SetHealth(float health) {
+		if (health >= MaxHealth){ Health = MaxHealth; }
+		else if (health <= 0) { Health = 0; }
+		else { Health = health; }
+	}
+	float GetHealth() { return Health; }
+
+	float GetMaxHealth() { return MaxHealth; }
 private:
 	UPROPERTY(EditAnywhere)
 	float MaxHealth = 100;

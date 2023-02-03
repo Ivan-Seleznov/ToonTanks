@@ -30,4 +30,9 @@ private:
 	float FireRate = 2;
 
 	bool CheckFireRange();
+
+	void SpawnPowerUps();
+
+	UPROPERTY(EditAnywhere, Category = "Dropped Objects")
+		TArray<TSubclassOf<class ABasePowerUp>> DroppedPowerUps;
 };
