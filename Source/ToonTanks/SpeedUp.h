@@ -16,6 +16,14 @@ class TOONTANKS_API ASpeedUp : public ABasePowerUp
 protected:
 	virtual void Activate(ATank* Tank) override;
 private:
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere,Category="SpeedBoost")
 		float SpeedBoost = 100;
+	UPROPERTY(EditAnywhere, Category = "SpeedBoost")
+		float BoostTime = 15;
+
+	float StartSpeed;
+
+	FTimerHandle SpeedBoostTimer;
+
+	void SetToStartSpeed();
 };

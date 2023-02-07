@@ -26,6 +26,11 @@ public:
 
 	void SetSpeed(float sp) { Speed = sp; }
 	float GetSpeed() { return Speed; }
+
+	UFUNCTION(BlueprintCallable)
+		bool IsBoost() { return UndBoost; }
+
+	void SetUnderBoost(bool boost) { UndBoost = boost; }
 protected:
 	virtual void BeginPlay() override;
 private:
@@ -47,4 +52,6 @@ private:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	APlayerController* PlayerControllerRef;
+
+	bool UndBoost;
 };

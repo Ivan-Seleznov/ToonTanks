@@ -32,7 +32,6 @@ void ATank::Tick(float DeltaTime)
 
 		RotateTurret(HitResult.ImpactPoint);
 	}
-
 }
 void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
@@ -45,7 +44,6 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 	PlayerInputComponent->BindAction(TEXT("Fire"), IE_Pressed, this, &ATank::Fire);
 }
-
 void ATank::Move(float Value) {
 	//Когда мы добавляем локальное смещение, мы смещаем rootcomponent (если он не null)
 

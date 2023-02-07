@@ -30,6 +30,7 @@ protected:
 		UStaticMeshComponent* MainMesh;
 	
 	virtual void Activate(ATank* Tank);
+
 	void DestroyPowerUp();
 
 public:	

@@ -33,16 +33,15 @@ ATank* ABasePowerUp::GetPawn()
 
 void ABasePowerUp::Activate(ATank* Tank)
 {
-
-}
-void ABasePowerUp::DestroyPowerUp() {
-	Destroy();
 	if (PickupSound)
 		UGameplayStatics::PlaySoundAtLocation(this, PickupSound, GetActorLocation());
 	if (PickupParticles)
 	{
 		UGameplayStatics::SpawnEmitterAtLocation(this, PickupParticles, GetActorLocation(), GetActorRotation());
 	}
+}
+void ABasePowerUp::DestroyPowerUp() {
+	Destroy();
 }
 // Called every frame
 void ABasePowerUp::Tick(float DeltaTime)
@@ -52,10 +51,11 @@ void ABasePowerUp::Tick(float DeltaTime)
 }
 void ABasePowerUp::BeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, 
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) {
-
+	UE_LOG(LogTemp, Warning, TEXT("Overlap"));
 	ATank* Tank = GetPawn();
 	if (OtherActor == Tank)
 	{
+		UE_LOG(LogTemp, Warning, TEXT("Activate"));
 		Activate(Tank);
 	}
 }
