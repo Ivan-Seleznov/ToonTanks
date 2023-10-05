@@ -7,23 +7,33 @@
 #include "TimerManager.h"
 #include "BasePowerUp.h"
 
-void ATower::BeginPlay() {
+void ATower::BeginPlay()
+{
 	Super::BeginPlay();
 	Tank = Cast<ATank>(UGameplayStatics::GetPlayerPawn(this, 0));
 
 	GetWorldTimerManager().SetTimer(FireRateTimerHandle,this,&ATower::CheckFireCondition,FireRate,true);
 }
-void ATower::Tick(float DeltaTime) {
+void ATower::Tick(float DeltaTime)
+{
 	Super::Tick(DeltaTime);
 
 	if (CheckFireRange())
+	{
 		RotateTurret(Tank->GetActorLocation());
+	}
 }
-void ATower::CheckFireCondition() {
+void ATower::CheckFireCondition()
+{
+	
 	if (CheckFireRange() && Tank && Tank->bAlive)
-		Fire();	
+	{
+		Fire();
+	}
+			
 }
-bool ATower::CheckFireRange() {
+bool ATower::CheckFireRange()
+{
 	if (Tank)
 	{
 		float distance = FVector::Distance(GetActorLocation(), Tank->GetActorLocation());
@@ -42,7 +52,6 @@ void ATower::SpawnPowerUps()
 	FVector Offset;
 	for (auto Item : DroppedPowerUps)
 	{
-		//Offset = FVector(-GetActorLocation().ForwardVector + i * 100,0, 0);
 		if (i >= 1)
 			yValue = rand() % 500;
 
@@ -54,7 +63,8 @@ void ATower::SpawnPowerUps()
 	}
 }
 
-void ATower::HandleDestructions() {
+void ATower::HandleDestructions()
+{
 	Super::HandleDestructions();
 	Destroy();
 	SpawnPowerUps();

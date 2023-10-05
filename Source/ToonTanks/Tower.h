@@ -16,6 +16,7 @@ class TOONTANKS_API ATower : public ABasePawn
 
 public:
 	virtual void Tick(float DeltaTime) override;
+	
 	void HandleDestructions();
 protected:
 	virtual void BeginPlay() override;
@@ -34,5 +35,5 @@ private:
 	void SpawnPowerUps();
 
 	UPROPERTY(EditAnywhere, Category = "Dropped Objects")
-		TArray<TSubclassOf<class ABasePowerUp>> DroppedPowerUps;
+	TArray<TSubclassOf<class ABasePowerUp>> DroppedPowerUps;
 };

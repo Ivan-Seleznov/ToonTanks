@@ -36,17 +36,13 @@ void ATank::Tick(float DeltaTime)
 void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-	//для связывания функций перемещения с осями
 
-	//3 параметр - адресс функции.
 	PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ATank::Move);
 	PlayerInputComponent->BindAxis(TEXT("Turn"), this, &ATank::Turn);
 
 	PlayerInputComponent->BindAction(TEXT("Fire"), IE_Pressed, this, &ATank::Fire);
 }
 void ATank::Move(float Value) {
-	//Когда мы добавляем локальное смещение, мы смещаем rootcomponent (если он не null)
-
 	float DeltaTime = UGameplayStatics::GetWorldDeltaSeconds(this);
 
 	FVector DeltaLocation = FVector::ZeroVector;

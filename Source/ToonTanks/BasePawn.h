@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
-//#include <Components/CapsuleComponent.h>
 #include "BasePawn.generated.h"
 
 UCLASS()
@@ -13,7 +12,6 @@ class TOONTANKS_API ABasePawn : public APawn
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this pawn's properties
 	ABasePawn();
 public:	
 
@@ -25,7 +23,7 @@ protected:
 	void HandleDestructions();
 private:
 	UPROPERTY(VisibleAnywhere,BlueprintReadOnly,Category="Components", meta = (AllowPrivateAccess = "true"))
-		class UCapsuleComponent* CapsuleComp; //предварительное обьявление | Forward declaration
+		class UCapsuleComponent* CapsuleComp;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 		UStaticMeshComponent* BaseMesh;
